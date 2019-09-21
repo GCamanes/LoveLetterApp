@@ -11,71 +11,61 @@ import {
 import {connect} from 'react-redux';
 
 import AppConstants from '../../app/app.constants';
-import PlayerScoreItem from '../../components/PlayerScoreItem/PlayerScoreItem';
 import assets from '../../assets';
-import styles from './homePage.styles';
-import * as HomeActions from '../../redux/actions/home-actions';
+import styles from './newGamePage.styles';
 import {AppColors, AppSizes, AppStyles} from '../../theme';
 
-class HomePage extends Component {
+class NewGamePage extends Component {
   constructor(props) {
     super(props);
   }
 
-  componentDidMount() {
-    const {initHomePage} = this.props;
-    initHomePage();
-  }
+  componentDidMount() {}
 
   /**
    * Render function to display component.
    */
   render() {
-    const {loadingStatus, players} = this.props;
+    const {loadingStatus} = this.props;
     if (loadingStatus.loading) {
       return (
         <View style={AppStyles.loadingView}>
           <ActivityIndicator
             size="large"
-            color={AppColors.palette.main.tertiary}
+            color={AppColors.palette.main.secondary}
           />
         </View>
       );
     }
     return (
-      <View style={styles.homeView}>
-        <ScrollView style={styles.scoresView}>
-          {players.map((player, index) => (
-            <PlayerScoreItem player={player} rank={index + 1} key={player.name}/>
-          ))}
+      <View style={styles.newGameView}>
+        <ScrollView style={styles.playerSelectionView}>
+
         </ScrollView>
         <TouchableOpacity style={styles.newGameTouchableView}>
-          <Image source={assets.plus} style={styles.imagePlus} />
-          <Text style={styles.textNewGame}>New game</Text>
+          <Image source={assets.plus} style={styles.imagePlay} />
+          <Text style={styles.textPlay}>Play</Text>
         </TouchableOpacity>
       </View>
     );
   }
 }
 
-HomePage.propTypes = {
+NewGamePage.propTypes = {
   connectivity: PropTypes.bool.isRequired,
-  initHomePage: PropTypes.func.isRequired,
   loadingStatus: PropTypes.object,
-  players: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
-HomePage.defaultProps = {
+NewGamePage.defaultProps = {
   loadingStatus: {loading: false},
 };
 
 const mapStateToProps = state => ({
   connectivity: state.app.connectivity,
-  loadingStatus: state.app[AppConstants.ROUTES.HOME],
-  players: state.player.players,
+  loadingStatus: state.app[AppConstants.ROUTES.NEW_GAME],
 });
 
 export default connect(
   mapStateToProps,
-  HomeActions,
-)(HomePage);
+  null,
+)(NewGamePage);

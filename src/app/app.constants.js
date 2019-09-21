@@ -14,11 +14,24 @@ const AppConstants = {
     UPDATE_CONNECTIVITY: 'UPDATE_CONNECTIVITY',
     // clear
     CLEAR_APP_REDUCER: 'CLEAR_APP_REDUCER',
+    // score
+    GET_SCORES_SAGA: 'GET_SCORES_SAGA',
+    SET_SCORES_REDUX: 'SET_SCORES_REDUX',
+    // player
+    GET_PLAYERS_SAGA: 'GET_PLAYERS_SAGA',
+    SET_PLAYERS_REDUX: 'SET_PLAYERS_REDUX',
+    ADD_PLAYER_SAGA: 'ADD_PLAYER_SAGA',
+    // pages
+    INIT_HOME_SAGA: 'INIT_HOME_SAGA',
   },
-  FIRESTORE: {},
+  FIRESTORE: {
+    PLAYERS_COLLECTION: 'players',
+    PLAYERS_LIST_DOC: 'list',
+  },
   ROUTES: {
     HOME: 'home',
     USER_LOGIN: 'user_login',
+    NEW_GAME: 'new_game',
   },
 };
 
