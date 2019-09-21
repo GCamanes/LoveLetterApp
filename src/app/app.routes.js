@@ -6,10 +6,18 @@ import {Actions, Scene} from 'react-native-router-flux';
 import AppConfig from './app.config';
 import AppConstants from './app.constants';
 import UserLoginPage from '../pages/UserLoginPage/UserLoginPage';
+import HomePage from '../pages/HomePage/HomePage';
+import LogoutButton from '../components/LogoutButton';
 
 /* Routes */
 const AppRoutes = Actions.create(
   <Scene key="root" {...AppConfig.sceneProps}>
+    <Scene
+      key={AppConstants.ROUTES.HOME}
+      title="Love Letter"
+      component={HomePage}
+      renderLeftButton={<LogoutButton />}
+    />
     <Scene
       key={AppConstants.ROUTES.USER_LOGIN}
       component={UserLoginPage}

@@ -16,9 +16,10 @@ export default {
   },
   // Navbar
   navbar: {
-    backgroundColor: Colors.palette.black,
-    borderBottomWidth: 0,
+    backgroundColor: Colors.palette.main.tertiary,
+    borderBottomWidth: 2,
     height: 55,
+    borderColor: AppColors.palette.main.secondary,
   },
   navbarTitle: {
     color: Colors.palette.white,
