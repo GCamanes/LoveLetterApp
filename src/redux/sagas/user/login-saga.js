@@ -1,4 +1,4 @@
-// import firebase from 'react-native-firebase';
+import firebase from 'react-native-firebase';
 import {put, takeLatest} from 'redux-saga/effects';
 import {Actions} from 'react-native-router-flux';
 
@@ -31,7 +31,7 @@ export function* loginSaga(action) {
   });
   try {
     const {userMail, userPassword, userRemember} = action.payload
-    // yield firebase.auth().signInWithEmailAndPassword(userMail, userPassword);
+    yield firebase.auth().signInWithEmailAndPassword(userMail, userPassword);
     if (userRemember) {
       yield Storage.setItem('userMail', userMail);
       yield Storage.setItem('userPassword', userPassword);
