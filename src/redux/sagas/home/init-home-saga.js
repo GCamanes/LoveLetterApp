@@ -18,7 +18,7 @@ export function* initHomeSaga(action) {
     });
   } catch (error) {
     console.log('error', error);
-    showAlert('Wrong mail or password', 'Error');
+    showAlert('Error while getting data from firebase', 'Error');
   }
   yield put({
     type: AppConstants.EVENTS.SET_LOADER,
