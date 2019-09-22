@@ -31,13 +31,16 @@ class HomePage extends Component {
   onPressNewGame = () => {
     const {initNewGamePage} = this.props;
     initNewGamePage();
-  }
+  };
 
   /**
    * Render function to display component.
    */
   render() {
     const {loadingStatus, players} = this.props;
+
+    const sortedPlayers = [...players];
+
     if (loadingStatus.loading) {
       return (
         <View style={AppStyles.loadingView}>
@@ -51,7 +54,7 @@ class HomePage extends Component {
     return (
       <View style={styles.homeView}>
         <ScrollView style={styles.scoresView}>
-          {players
+          {sortedPlayers
             .sort((a, b) => b.victory - a.victory || b.rate - a.rate)
             .map((player, index) => (
               <PlayerScoreItem

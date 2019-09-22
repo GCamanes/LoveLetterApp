@@ -11,11 +11,19 @@ const styles = StyleSheet.create({
     flex: 1,
     width: AppSizes.screen.width,
   },
+  bottomView: {
+    width: AppSizes.screen.width,
+    backgroundColor: AppColors.palette.main.tertiary,
+    borderTopWidth: 2,
+    borderColor: AppColors.palette.main.secondary,
+    alignItems: 'center',
+  },
   playTouchableView: {
     flexDirection: 'row',
     width: AppSizes.screen.widthHalf,
-    height: AppSizes.screen.widthQuarter / 2,
-    margin: 10,
+    height: AppSizes.screen.width * 0.15,
+    margin: 5,
+    paddingHorizontal: 4,
     alignItems: 'center',
     backgroundColor: AppColors.palette.main.quaternary,
     borderRadius: 50,
@@ -23,9 +31,10 @@ const styles = StyleSheet.create({
     borderWidth: 2,
   },
   textPlay: {
+    flex: 1,
     color: AppColors.palette.main.primary,
     fontSize: AppFonts.t16.size,
-    marginLeft: 5,
+    textAlign: 'center',
   },
   imagePlay: {
     height: AppSizes.screen.widthQuarter / 2.2,
