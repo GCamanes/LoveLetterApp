@@ -1,15 +1,6 @@
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
-import Slider from '@react-native-community/slider';
-import {
-  ActivityIndicator,
-  Image,
-  ScrollView,
-  SectionList,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {Image, SectionList, Text, TouchableOpacity, View} from 'react-native';
 import {connect} from 'react-redux';
 
 import AppConstants from '../../app/app.constants';
@@ -17,6 +8,7 @@ import PlayerSelectItem from '../../components/PlayerSelectItem';
 import SectionListTitle from '../../components/SectionListTitle';
 import assets from '../../assets';
 import styles from './newGamePage.styles';
+import * as GameActions from '../../redux/actions/game-actions';
 import * as PlayerActions from '../../redux/actions/player-actions';
 import {AppColors, AppSizes, AppStyles} from '../../theme';
 import showAlert from '../../utils/showAlert';
@@ -65,12 +57,13 @@ class NewGamePage extends Component {
   }
 
   onPlayPress = () => {
-    const {players} = this.props;
-    const numberOfPlayersSelected = players.filter(player => player.selected).length;
-    if (numberOfPlayersSelected < AppConstants.GAME.MIN_NUMBER_PLAYERS) {
+    const {launchGame, players} = this.props;
+    const {deskSize} = this.state;
+    const playersSelected = players.filter(player => player.selected);
+    if (playersSelected.length < AppConstants.GAME.MIN_NUMBER_PLAYERS) {
       showAlert('Min number of players : 2');
     } else {
-      console.log('GO PLAY');
+      launchGame(playersSelected, deskSize);
     }
   }
 
@@ -78,18 +71,8 @@ class NewGamePage extends Component {
    * Render function to display component.
    */
   render() {
-    const {loadingStatus, players} = this.props;
+    const {players} = this.props;
     const {deckSize} = this.state;
-    if (loadingStatus.loading) {
-      return (
-        <View style={AppStyles.loadingView}>
-          <ActivityIndicator
-            size="large"
-            color={AppColors.palette.main.secondary}
-          />
-        </View>
-      );
-    }
     return (
       <View style={styles.newGameView}>
         <SectionList
@@ -146,6 +129,7 @@ class NewGamePage extends Component {
 
 NewGamePage.propTypes = {
   connectivity: PropTypes.bool.isRequired,
+  launchGame: PropTypes.func.isRequired,
   loadingStatus: PropTypes.object,
   players: PropTypes.arrayOf(PropTypes.object).isRequired,
   updatePlayerSelected: PropTypes.func.isRequired,
@@ -163,5 +147,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  PlayerActions,
+  {...PlayerActions, ...GameActions},
 )(NewGamePage);

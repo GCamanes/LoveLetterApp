@@ -14,9 +14,6 @@ const AppConstants = {
     UPDATE_CONNECTIVITY: 'UPDATE_CONNECTIVITY',
     // clear
     CLEAR_APP_REDUCER: 'CLEAR_APP_REDUCER',
-    // score
-    GET_SCORES_SAGA: 'GET_SCORES_SAGA',
-    SET_SCORES_REDUX: 'SET_SCORES_REDUX',
     // player
     UPDATE_SELECTED_PLAYER_REDUX: 'UPDATE_SELECTED_PLAYER_REDUX',
     SET_PLAYERS_REDUX: 'SET_PLAYERS_REDUX',
@@ -25,6 +22,8 @@ const AppConstants = {
     // pages
     INIT_HOME_PAGE_SAGA: 'INIT_HOME_PAGE_SAGA',
     INIT_NEW_GAME_PAGE: 'INIT_NEW_GAME_PAGE',
+    // game
+    LAUNCH_GAME: 'LAUNCH_GAME',
   },
   GAME: {
     MIN_NUMBER_PLAYERS: 2,
@@ -38,10 +37,11 @@ const AppConstants = {
     PLAYERS_LIST_DOC: 'list',
   },
   ROUTES: {
-    HOME: 'home',
-    USER_LOGIN: 'user_login',
-    NEW_GAME: 'new_game',
     ADD_PLAYER: 'add-player',
+    GAME: 'game',
+    HOME: 'home',
+    NEW_GAME: 'new_game',
+    USER_LOGIN: 'user_login',
   },
 };
 

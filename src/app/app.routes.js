@@ -6,6 +6,7 @@ import {Actions, Scene} from 'react-native-router-flux';
 import AddPlayer from '../components/AddPlayer';
 import AppConfig from './app.config';
 import AppConstants from './app.constants';
+import GamePage from '../pages/GamePage/GamePage';
 import HomePage from '../pages/HomePage/HomePage';
 import LogoutButton from '../components/LogoutButton';
 import NewGamePage from '../pages/NewGamePage/NewGamePage';
@@ -20,6 +21,7 @@ const AppRoutes = Actions.create(
       component={HomePage}
       renderLeftButton={<LogoutButton />}
     />
+    <Scene key={AppConstants.ROUTES.GAME} title="Game" component={GamePage} />
     <Scene
       key={AppConstants.ROUTES.NEW_GAME}
       title="New Game"
