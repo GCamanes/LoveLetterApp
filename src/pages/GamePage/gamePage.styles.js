@@ -12,15 +12,17 @@ const styles = StyleSheet.create({
     width: AppSizes.screen.width,
   },
   bottomView: {
+    flexDirection: 'row',
     width: AppSizes.screen.width,
     backgroundColor: AppColors.palette.main.tertiary,
     borderTopWidth: 2,
     borderColor: AppColors.palette.main.secondary,
     alignItems: 'center',
+    justifyContent: 'center',
   },
-  endTouchableView: {
+  touchableView: {
     flexDirection: 'row',
-    width: AppSizes.screen.widthHalf,
+    width: AppSizes.screen.width * 0.4,
     height: AppSizes.screen.width * 0.15,
     margin: 5,
     paddingHorizontal: 4,
@@ -30,13 +32,13 @@ const styles = StyleSheet.create({
     borderColor: AppColors.palette.main.secondary,
     borderWidth: 2,
   },
-  textEnd: {
+  textBottom: {
     flex: 1,
     color: AppColors.palette.main.primary,
     fontSize: AppFonts.t16.size,
     textAlign: 'center',
   },
-  imageEnd: {
+  imageBottom: {
     height: AppSizes.screen.widthQuarter / 2.2,
     width: AppSizes.screen.widthQuarter / 2.2,
   },

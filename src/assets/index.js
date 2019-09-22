@@ -1,8 +1,10 @@
 const assets = {
   logout: require('./logout-icon.png'),
   minus: require('./minus-icon.png'),
+  next: require('./circled-next.png'),
   play: require('./play-icon.png'),
   plus: require('./plus-icon.png'),
+  previous: require('./circled-previous.png'),
   trophy: require('./trophy-icon.png'),
   card: {
     assassin: require('./cards/card-assassin.png'),

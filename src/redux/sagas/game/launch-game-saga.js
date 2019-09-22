@@ -8,9 +8,11 @@ export function* launchGameSaga(action) {
     type: AppConstants.EVENTS.SET_LOADER,
     payload: {scene: AppConstants.ROUTES.GAME, loading: true},
   });
+  console.log(action.payload);
+  const deck = AppConstants.DECKS[action.payload.deckSize];
   Actions.jump(AppConstants.ROUTES.GAME, {
     players: action.payload.players,
-    deck: {},
+    deck: deck,
   });
   yield put({
     type: AppConstants.EVENTS.SET_LOADER,

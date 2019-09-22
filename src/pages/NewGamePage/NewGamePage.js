@@ -58,12 +58,12 @@ class NewGamePage extends Component {
 
   onPlayPress = () => {
     const {launchGame, players} = this.props;
-    const {deskSize} = this.state;
+    const {deckSize} = this.state;
     const playersSelected = players.filter(player => player.selected);
     if (playersSelected.length < AppConstants.GAME.MIN_NUMBER_PLAYERS) {
       showAlert('Min number of players : 2');
     } else {
-      launchGame(playersSelected, deskSize);
+      launchGame(playersSelected, deckSize);
     }
   }
 
