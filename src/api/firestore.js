@@ -14,11 +14,12 @@ class FirestoreService {
         game: item._data.game,
         rate:
           item._data.game !== 0
-            ? ((item._data.victory / item._data.game) * 100).toFixed(0)
+            ? Number(((item._data.victory / item._data.game) * 100).toFixed(0))
             : 0,
       };
     });
-    return players.sort((a, b) => b.victory - a.victory || b.rate - a.rate);
+    return players.sort((a, b) => b.name - a.name);
+    // return players.sort((a, b) => b.victory - a.victory || b.rate - a.rate);
   }
 }
 

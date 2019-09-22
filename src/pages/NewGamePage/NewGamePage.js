@@ -54,6 +54,7 @@ class NewGamePage extends Component {
 NewGamePage.propTypes = {
   connectivity: PropTypes.bool.isRequired,
   loadingStatus: PropTypes.object,
+  players: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 NewGamePage.defaultProps = {
@@ -63,6 +64,7 @@ NewGamePage.defaultProps = {
 const mapStateToProps = state => ({
   connectivity: state.app.connectivity,
   loadingStatus: state.app[AppConstants.ROUTES.NEW_GAME],
+  players: state.player.players,
 });
 
 export default connect(

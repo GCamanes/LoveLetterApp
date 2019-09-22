@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flex: 1,
     marginHorizontal: 5,
-    marginTop: 5,
+    marginVertical: 2.5,
     backgroundColor: AppColors.palette.main.quaternary,
     borderRadius: 5,
     borderWidth: 2,

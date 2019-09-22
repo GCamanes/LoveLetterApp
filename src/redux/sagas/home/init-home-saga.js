@@ -10,7 +10,6 @@ export function* initHomeSaga(action) {
     payload: {scene: AppConstants.ROUTES.HOME, loading: true},
   });
   try {
-    console.log('initHomeSaga');
     const players = yield FirestoreService.getPlayers();
     yield put({
       type: AppConstants.EVENTS.SET_PLAYERS_REDUX,
@@ -32,5 +31,5 @@ export function* initHomeSaga(action) {
  * @returns {IterableIterator<ForkEffect>}
  */
 export default function* watch() {
-  yield takeLatest(AppConstants.EVENTS.INIT_HOME_SAGA, initHomeSaga);
+  yield takeLatest(AppConstants.EVENTS.INIT_HOME_PAGE_SAGA, initHomeSaga);
 }
