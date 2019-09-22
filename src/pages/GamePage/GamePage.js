@@ -13,16 +13,46 @@ import {connect} from 'react-redux';
 import assets from '../../assets';
 import styles from './gamePage.styles';
 import GameCard from '../../components/GameCard';
+import showAlert from '../../utils/showAlert';
 
 class GamePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       deck: {...props.deck},
+      gameTrack: [],
     };
   }
 
   componentDidMount() {}
+
+  onCardPress = cardName => {
+    const {deck, gameTrack} = this.state;
+    let newDeck = {...deck};
+    let newGameTrack = [...gameTrack];
+    newDeck[cardName] = deck[cardName] - 1;
+    newGameTrack.push(cardName);
+    this.setState({
+      deck: newDeck,
+      gameTrack: newGameTrack,
+    });
+  };
+
+  onCancelPress = () => {
+    const {deck, gameTrack} = this.state;
+    if (gameTrack.length === 0) {
+      showAlert('No action to cancel');
+    } else {
+      let previousDeck = {...deck};
+      let previousGameTrack = [...gameTrack];
+      const cardGame = previousGameTrack.pop();
+      previousDeck[cardGame] = deck[cardGame] + 1;
+      this.setState({
+        deck: previousDeck,
+        gameTrack: previousGameTrack,
+      });
+    }
+  };
 
   /**
    * Render function to display component.
@@ -30,8 +60,6 @@ class GamePage extends Component {
   render() {
     const {players} = this.props;
     const {deck} = this.state;
-    console.log('DECK', deck);
-    console.log('PLAYERS', players);
     return (
       <View style={styles.gameView}>
         <FlatList
@@ -41,12 +69,17 @@ class GamePage extends Component {
           initialNumToRender={10}
           onEndReachedThreshold={10}
           renderItem={({item}) => (
-            <GameCard cardName={item} count={deck[item]} key={item} />
+            <GameCard
+              cardName={item}
+              count={deck[item]}
+              key={item}
+              onPress={this.onCardPress}
+            />
           )}
         />
 
         <View style={styles.bottomView}>
-          <TouchableOpacity style={styles.touchableView}>
+          <TouchableOpacity style={styles.touchableView} onPress={this.onCancelPress}>
             <Image source={assets.previous} style={styles.imageBottom} />
             <Text style={styles.textBottom}>Cancel</Text>
           </TouchableOpacity>

@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
 });
 
 const GameCard = ({cardName, count, onPress}) => (
-  <TouchableOpacity style={styles.cardView}>
+  <TouchableOpacity style={styles.cardView} onPress={() => onPress(cardName)}>
     <Image
       source={assets.card[AppConstants.CARD[cardName]]}
       style={styles.carImage}
@@ -46,7 +46,8 @@ const GameCard = ({cardName, count, onPress}) => (
 
 GameCard.propTypes = {
   cardName: PropTypes.string.isRequired,
-  onPress: PropTypes.func,
+  count: PropTypes.number.isRequired,
+  onPress: PropTypes.func.isRequired,
 };
 
 export default GameCard;
