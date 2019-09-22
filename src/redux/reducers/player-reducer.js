@@ -2,6 +2,7 @@ import AppConstants from '../../app/app.constants';
 
 const initialState = {
   players: [],
+  addingPlayer: false,
 };
 
 const playerReducer = (state = initialState, action) => {
@@ -23,6 +24,11 @@ const playerReducer = (state = initialState, action) => {
           a.name > b.name ? 1 : b.name > a.name ? -1 : 0,
         ),
       };
+    case AppConstants.EVENTS.SHOW_ADDING_PLAYER_VIEW:
+      return {
+        ...state,
+        addingPlayer: action.payload,
+      }
     default:
       return state;
   }

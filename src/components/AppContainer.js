@@ -7,6 +7,8 @@ import androidBackHandler from '../utils/back-handler';
 import * as AppActions from '../redux/actions/app-actions';
 
 import {AppColors} from '../theme';
+import AppConstants from '../app/app.constants';
+import AddingPlayerView from './AddingPlayerView';
 
 class AppContainer extends Component {
   componentDidMount() {
@@ -25,7 +27,7 @@ class AppContainer extends Component {
    * Render function to display component.
    */
   render() {
-    const {children} = this.props;
+    const {addingPlayer, children} = this.props;
 
     return (
       <Fragment>
@@ -34,6 +36,8 @@ class AppContainer extends Component {
         <SafeAreaView style={{flex: 1, backgroundColor: AppColors.palette.black}}>
           {/* Main content */}
           {children}
+
+          {addingPlayer && <AddingPlayerView />}
         </SafeAreaView>
       </Fragment>
     );
@@ -41,6 +45,7 @@ class AppContainer extends Component {
 }
 
 AppContainer.propTypes = {
+  addingPlayer: PropTypes.bool.isRequired,
   children: PropTypes.any,
   updateConnectivity: PropTypes.func.isRequired,
 };
@@ -49,7 +54,11 @@ AppContainer.defaultProps = {
   children: [],
 };
 
+const mapStateToProps = state => ({
+  addingPlayer: state.player.addingPlayer,
+});
+
 export default connect(
-  null,
+  mapStateToProps,
   AppActions,
 )(AppContainer);
