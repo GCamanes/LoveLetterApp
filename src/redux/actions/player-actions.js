@@ -14,9 +14,9 @@ export function showAddingPlayerView(show) {
   };
 }
 
-/* export function addPlayer(name) {
+export function addPlayer(name) {
   return {
-    type: AppConstants.EVENTS.UPDATE_SELECTED_PLAYER_REDUX,
+    type: AppConstants.EVENTS.ADD_PLAYER_SAGA,
     payload: name,
   };
-} */
+}

@@ -2,7 +2,8 @@ import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {
   StyleSheet,
-  Text, TextInput,
+  Text,
+  TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
@@ -10,6 +11,8 @@ import {connect} from 'react-redux';
 
 import * as PlayerActions from '../redux/actions/player-actions';
 import {AppColors, AppFonts, AppSizes} from '../theme';
+import showAlert from '../utils/showAlert';
+import AppConstants from '../app/app.constants';
 
 const styles = StyleSheet.create({
   main_container: {
@@ -73,6 +76,22 @@ class AddingPlayerView extends Component {
     };
   }
 
+  onAddPress = () => {
+    const {addPlayer} = this.props;
+    const {name} = this.state;
+    if (name === '') {
+      showAlert('Please enter a player name');
+    } else if (name.length > AppConstants.GAME.MAX_LENGTH_PLAYER_NAME) {
+      showAlert(
+        `max name length ${AppConstants.GAME.MAX_LENGTH_PLAYER_NAME} (current ${
+          name.length
+        })`,
+      );
+    } else {
+      addPlayer(name);
+    }
+  }
+
   onCancelPress = () => {
     const {showAddingPlayerView} = this.props;
     showAddingPlayerView(false);
@@ -87,15 +106,15 @@ class AddingPlayerView extends Component {
       <View style={styles.main_container}>
         <View style={styles.addingPlayerView}>
           <TextInput
-            value={this.state.userMail}
-            onChangeText={userMail => this.setState({name})}
+            value={this.state.name}
+            onChangeText={name => this.setState({name})}
             placeholder="Name"
             selectionColor={AppColors.palette.main.secondary}
             style={styles.input}
             autoCapitalize="none"
           />
           <View style={{flexDirection: 'row'}}>
-            <TouchableOpacity style={styles.touchableView}>
+            <TouchableOpacity style={styles.touchableView} onPress={this.onAddPress}>
               <Text style={styles.text}>Add</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.touchableView} onPress={this.onCancelPress}>
@@ -108,7 +127,10 @@ class AddingPlayerView extends Component {
   }
 }
 
-AddingPlayerView.propTypes = {};
+AddingPlayerView.propTypes = {
+  addPlayer: PropTypes.func.isRequired,
+  showAddingPlayerView: PropTypes.func.isRequired,
+};
 
 export default connect(
   null,

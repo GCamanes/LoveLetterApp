@@ -29,6 +29,7 @@ const AppConstants = {
   GAME: {
     MIN_NUMBER_PLAYERS: 4,
     MAX_NUMBER_PLAYERS: 8,
+    MAX_LENGTH_PLAYER_NAME: '25',
   },
   FIRESTORE: {
     PLAYERS_COLLECTION: 'players',
@@ -38,6 +39,7 @@ const AppConstants = {
     HOME: 'home',
     USER_LOGIN: 'user_login',
     NEW_GAME: 'new_game',
+    ADD_PLAYER: 'add-player',
   },
 };
 
