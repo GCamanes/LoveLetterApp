@@ -9,7 +9,8 @@ class FirestoreService {
       .get();
     const players = playersData._docs.map(item => {
       return {
-        name: item.id,
+        id: item.id,
+        name: item._data.name,
         victory: item._data.victory,
         game: item._data.game,
         rate:
@@ -22,6 +23,25 @@ class FirestoreService {
     return players.sort((a, b) =>
       a.name > b.name ? 1 : b.name > a.name ? -1 : 0,
     );
+  }
+
+  static async addPlayer(name) {
+    await firebase
+      .firestore()
+      .collection(AppConstants.FIRESTORE.PLAYERS_COLLECTION)
+      .add({name: name, game: 0, victory: 0});
+  }
+
+  static async updatePlayerScore(player, victory = false) {
+    await firebase
+      .firestore()
+      .collection(AppConstants.FIRESTORE.PLAYERS_COLLECTION)
+      .doc(player.id)
+      .set({
+        game: player.game + 1,
+        name: player.name,
+        victory: player.victoryView + (victory ? 1 : 0),
+      });
   }
 }
 
