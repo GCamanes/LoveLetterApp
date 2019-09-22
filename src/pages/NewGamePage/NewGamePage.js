@@ -17,21 +17,24 @@ import PlayerSelectItem from '../../components/PlayerSelectItem';
 import SectionListTitle from '../../components/SectionListTitle';
 import assets from '../../assets';
 import styles from './newGamePage.styles';
+import * as PlayerActions from '../../redux/actions/player-actions';
 import {AppColors, AppSizes, AppStyles} from '../../theme';
+import showAlert from '../../utils/showAlert';
 
 class NewGamePage extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      numberOfPalyers: props.players.filter(player => player.selected).length,
-    };
-  }
-
   componentDidMount() {}
 
   onSelectPlayer = player => {
-    console.log(player.name);
+    const {players, updatePlayerSelected} = this.props;
+    if (
+      !player.selected &&
+      players.filter(player => player.selected).length ===
+        AppConstants.GAME.MAX_NUMBER_PLAYERS
+    ) {
+      showAlert('Max number of players : 8');
+    } else {
+      updatePlayerSelected(player);
+    }
   }
 
   /**
@@ -95,6 +98,7 @@ NewGamePage.propTypes = {
   connectivity: PropTypes.bool.isRequired,
   loadingStatus: PropTypes.object,
   players: PropTypes.arrayOf(PropTypes.object).isRequired,
+  updatePlayerSelected: PropTypes.func.isRequired,
 };
 
 NewGamePage.defaultProps = {
@@ -109,5 +113,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  null,
+  PlayerActions,
 )(NewGamePage);

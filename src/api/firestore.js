@@ -19,7 +19,9 @@ class FirestoreService {
         selected: false,
       };
     });
-    return players.sort((a, b) => b.name - a.name);
+    return players.sort((a, b) =>
+      a.name > b.name ? 1 : b.name > a.name ? -1 : 0,
+    );
   }
 }
 
