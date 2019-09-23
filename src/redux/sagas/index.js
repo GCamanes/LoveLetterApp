@@ -1,4 +1,5 @@
 import addPlayerSaga from './player/add-player-saga';
+import endGameSaga from './game/end-game-saga';
 import exitSaga from './user/exit-saga';
 import initHomeSaga from './home/init-home-saga';
 import initNewGameSaga from './new-game/init-new-game-saga';
@@ -9,6 +10,7 @@ import {all} from 'redux-saga/effects';
 
 const sagas = [
   addPlayerSaga(),
+  endGameSaga(),
   exitSaga(),
   initHomeSaga(),
   initNewGameSaga(),

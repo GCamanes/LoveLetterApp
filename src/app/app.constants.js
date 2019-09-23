@@ -165,6 +165,7 @@ const AppConstants = {
     UPDATE_CONNECTIVITY: 'UPDATE_CONNECTIVITY',
     // clear
     CLEAR_APP_REDUCER: 'CLEAR_APP_REDUCER',
+    CLEAR_PLAYER_REDUCER: 'CLEAR_PLAYER_REDUCER',
     // player
     UPDATE_SELECTED_PLAYER_REDUX: 'UPDATE_SELECTED_PLAYER_REDUX',
     SET_PLAYERS_REDUX: 'SET_PLAYERS_REDUX',
@@ -174,7 +175,8 @@ const AppConstants = {
     INIT_HOME_PAGE_SAGA: 'INIT_HOME_PAGE_SAGA',
     INIT_NEW_GAME_PAGE: 'INIT_NEW_GAME_PAGE',
     // game
-    LAUNCH_GAME: 'LAUNCH_GAME',
+    END_GAME_SAGA: 'END_GAME_SAGA',
+    LAUNCH_GAME_SAGA: 'LAUNCH_GAME_SAGA',
   },
   GAME: {
     MIN_NUMBER_PLAYERS: 2,
@@ -188,7 +190,8 @@ const AppConstants = {
     PLAYERS_LIST_DOC: 'list',
   },
   ROUTES: {
-    ADD_PLAYER: 'add-player',
+    ADD_PLAYER: 'add_player',
+    END_GAME: 'end_game',
     GAME: 'game',
     HOME: 'home',
     NEW_GAME: 'new_game',

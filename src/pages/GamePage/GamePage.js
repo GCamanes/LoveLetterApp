@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
+import {Actions} from 'react-native-router-flux';
 import {
   FlatList,
   Image,
@@ -14,6 +15,7 @@ import assets from '../../assets';
 import styles from './gamePage.styles';
 import GameCard from '../../components/GameCard';
 import showAlert from '../../utils/showAlert';
+import AppConstants from '../../app/app.constants';
 
 class GamePage extends Component {
   constructor(props) {
@@ -54,11 +56,15 @@ class GamePage extends Component {
     }
   };
 
+  onEndPress = () => {
+    const {players} = this.props;
+    Actions.jump(AppConstants.ROUTES.END_GAME, {players: players});
+  }
+
   /**
    * Render function to display component.
    */
   render() {
-    const {players} = this.props;
     const {deck} = this.state;
     return (
       <View style={styles.gameView}>
@@ -83,7 +89,7 @@ class GamePage extends Component {
             <Image source={assets.previous} style={styles.imageBottom} />
             <Text style={styles.textBottom}>Cancel</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.touchableView}>
+          <TouchableOpacity style={styles.touchableView} onPress={this.onEndPress}>
             <Image source={assets.next} style={styles.imageBottom} />
             <Text style={styles.textBottom}>End</Text>
           </TouchableOpacity>

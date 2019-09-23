@@ -28,7 +28,11 @@ const playerReducer = (state = initialState, action) => {
       return {
         ...state,
         addingPlayer: action.payload,
-      }
+      };
+    case AppConstants.EVENTS.CLEAR_PLAYER_REDUCER:
+      return {
+        ...initialState,
+      };
     default:
       return state;
   }

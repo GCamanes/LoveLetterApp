@@ -26,5 +26,5 @@ export function* launchGameSaga(action) {
  * @returns {IterableIterator<ForkEffect>}
  */
 export default function* watch() {
-  yield takeLatest(AppConstants.EVENTS.LAUNCH_GAME, launchGameSaga);
+  yield takeLatest(AppConstants.EVENTS.LAUNCH_GAME_SAGA, launchGameSaga);
 }

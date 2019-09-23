@@ -19,7 +19,7 @@ export function* addPlayerSaga(action) {
     ) {
       throw new Error('NAME_UNAVAILABLE');
     }
-    yield FirestoreService.addPlayer(action.payload);
+    yield FirestoreService.addPlayer(action.payload.toLowerCase());
     const players = yield FirestoreService.getPlayers();
     yield put({
       type: AppConstants.EVENTS.SET_PLAYERS_REDUX,

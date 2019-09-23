@@ -25,7 +25,9 @@ export class PlayerScoreItem extends Component {
           <Text style={styles.text}>{player.name}</Text>
           <View style={styles.trophyView}>
             <Image source={assets.trophy} style={styles.trophyImage} />
-            <Text style={styles.text}>{player.victory}</Text>
+            <Text style={styles.text}>{`${player.victory} (${
+              player.game
+            }) `}</Text>
           </View>
         </View>
         <ProgressCircle

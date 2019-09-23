@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Image, StyleSheet, TouchableOpacity} from 'react-native';
 import assets from '../assets';
 import * as PlayerActions from '../redux/actions/player-actions';
 import {AppColors, AppFonts, AppSizes} from '../theme';

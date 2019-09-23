@@ -40,7 +40,7 @@ class FirestoreService {
       .set({
         game: player.game + 1,
         name: player.name,
-        victory: player.victoryView + (victory ? 1 : 0),
+        victory: player.victory + (victory ? 1 : 0),
       });
   }
 }

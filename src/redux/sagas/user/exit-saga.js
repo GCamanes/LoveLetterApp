@@ -4,6 +4,7 @@ import AppConstants from '../../../app/app.constants';
 
 export function* exitSaga() {
   yield put({type: AppConstants.EVENTS.LOGOUT_REDUX});
+  yield put({type: AppConstants.EVENTS.CLEAR_PLAYER_REDUCER});
   yield put({type: AppConstants.EVENTS.CLEAR_APP_REDUCER});
 }
 

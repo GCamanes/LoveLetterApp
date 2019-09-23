@@ -5,6 +5,7 @@ import AppConstants from '../../../app/app.constants';
 
 export function* logoutSaga() {
   yield put({type: AppConstants.EVENTS.LOGOUT_REDUX});
+  yield put({type: AppConstants.EVENTS.CLEAR_PLAYER_REDUCER});
   Actions.reset(AppConstants.ROUTES.USER_LOGIN);
 }
 
