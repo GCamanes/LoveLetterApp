@@ -6,6 +6,7 @@ const assets = {
   plus: require('./plus-icon.png'),
   previous: require('./circled-previous.png'),
   trophy: require('./trophy-icon.png'),
+  order: require('./order-icon.png'),
   card: {
     assassin: require('./cards/card-assassin.png'),
     baron: require('./cards/card-baron.png'),

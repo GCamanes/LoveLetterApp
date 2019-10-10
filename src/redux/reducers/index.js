@@ -1,8 +1,9 @@
 /**
  * Combine All Reducers
  */
-import {combineReducers} from 'redux';
+import { combineReducers } from 'redux';
 import app from './app-reducer';
+import home from './home-reducer';
 import player from './player-reducer';
 import router from './router-reducer';
 import user from './user-reducer';
@@ -13,6 +14,7 @@ const appReducer = combineReducers({
   player,
   router,
   user,
+  home,
 });
 
 // Setup root reducer

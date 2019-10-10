@@ -1,22 +1,15 @@
 import PropTypes from 'prop-types';
-import React, {Component} from 'react';
-import {
-  ActivityIndicator,
-  Image,
-  ScrollView,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import {connect} from 'react-redux';
-
+import React, { Component } from 'react';
+import { ActivityIndicator, Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { connect } from 'react-redux';
 import AppConstants from '../../app/app.constants';
-import PlayerScoreItem from '../../components/PlayerScoreItem/PlayerScoreItem';
 import assets from '../../assets';
-import styles from './homePage.styles';
+import PlayerScoreItem from '../../components/PlayerScoreItem/PlayerScoreItem';
 import * as HomeActions from '../../redux/actions/home-actions';
 import * as NewGameActions from '../../redux/actions/new-game-actions';
-import {AppColors, AppSizes, AppStyles} from '../../theme';
+import { AppColors, AppStyles } from '../../theme';
+import styles from './homePage.styles';
+
 
 class HomePage extends Component {
   constructor(props) {
@@ -24,12 +17,12 @@ class HomePage extends Component {
   }
 
   componentDidMount() {
-    const {initHomePage} = this.props;
+    const { initHomePage } = this.props;
     initHomePage();
   }
 
   onPressNewGame = () => {
-    const {initNewGamePage} = this.props;
+    const { initNewGamePage } = this.props;
     initNewGamePage();
   };
 
@@ -37,9 +30,16 @@ class HomePage extends Component {
    * Render function to display component.
    */
   render() {
-    const {loadingStatus, players} = this.props;
+    const { loadingStatus, players, orderLeaderboardBy } = this.props;
 
     const sortedPlayers = [...players];
+    const sort = (a, b) => {
+      if (orderLeaderboardBy === AppConstants.RANKING.ORDER_BY_RATIO) {
+        return b.rate - a.rate || b.victory - a.victory;
+      } else {
+        return b.victory - a.victory || b.rate - a.rate
+      }
+    }
 
     if (loadingStatus.loading) {
       return (
@@ -54,12 +54,25 @@ class HomePage extends Component {
     return (
       <View style={styles.homeView}>
         <ScrollView style={styles.scoresView}>
+          <Text style={styles.scoreTitleView}>Ranked by {orderLeaderboardBy}</Text>
           {sortedPlayers
-            .sort((a, b) => b.victory - a.victory || b.rate - a.rate)
+            .filter((player) => player.game >= AppConstants.RANKING.MIN_GAME_BEFORE_RANK)
+            .sort((a, b) => sort(a, b))
             .map((player, index) => (
               <PlayerScoreItem
                 player={player}
                 rank={index + 1}
+                key={player.name}
+              />
+            ))}
+          <Text style={styles.scoreTitleView}>Unranked</Text>
+
+          {sortedPlayers
+            .filter((player) => player.game < AppConstants.RANKING.MIN_GAME_BEFORE_RANK)
+            .map((player, index) => (
+              <PlayerScoreItem
+                player={player}
+                rank="N/A"
                 key={player.name}
               />
             ))}
@@ -84,16 +97,17 @@ HomePage.propTypes = {
 };
 
 HomePage.defaultProps = {
-  loadingStatus: {loading: false},
+  loadingStatus: { loading: false },
 };
 
 const mapStateToProps = state => ({
   connectivity: state.app.connectivity,
   loadingStatus: state.app[AppConstants.ROUTES.HOME],
   players: state.player.players,
+  orderLeaderboardBy: state.home.orderLeaderboardBy
 });
 
 export default connect(
   mapStateToProps,
-  {...HomeActions, ...NewGameActions},
+  { ...HomeActions, ...NewGameActions },
 )(HomePage);

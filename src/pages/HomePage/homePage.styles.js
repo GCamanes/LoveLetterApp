@@ -1,5 +1,5 @@
-import {StyleSheet} from 'react-native';
-import {AppColors, AppFonts, AppSizes} from '../../theme';
+import { StyleSheet } from 'react-native';
+import { AppColors, AppFonts, AppSizes } from '../../theme';
 
 const styles = StyleSheet.create({
   homeView: {
@@ -10,6 +10,12 @@ const styles = StyleSheet.create({
   scoresView: {
     flex: 1,
     width: AppSizes.screen.width,
+  },
+  scoreTitleView: {
+    fontSize: 20,
+    marginTop: 10,
+    marginLeft: 5,
+    fontWeight: 'bold'
   },
   bottomView: {
     width: AppSizes.screen.width,

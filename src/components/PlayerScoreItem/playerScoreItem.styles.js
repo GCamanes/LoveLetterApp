@@ -1,12 +1,12 @@
-import {StyleSheet} from 'react-native';
-import {AppColors, AppFonts, AppSizes} from '../../theme';
+import { StyleSheet } from 'react-native';
+import { AppColors, AppFonts, AppSizes } from '../../theme';
 
 const styles = StyleSheet.create({
   playerScoreView: {
     flexDirection: 'row',
     flex: 1,
-    marginHorizontal: 5,
-    marginVertical: 2.5,
+    marginHorizontal: 15,
+    marginVertical: 5,
     backgroundColor: AppColors.palette.main.quaternary,
     borderRadius: 5,
     borderWidth: 2,
